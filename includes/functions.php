@@ -33,7 +33,7 @@ if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
         // Normalize URLs
         $urlSegment = trim($urlSegment, '/');
 
-        $filename = $urlSegment ?: 'index';
+        $filename = $urlSegment . '/index';
 
         if ($domainBasedCaching) {
             if (!$urlParts) {
@@ -43,12 +43,8 @@ if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
                 $filename = $urlParts['host'] . '/' . $filename;
             }
         }
-        $dirName = dirname($filename);
-        $prefix = '';
-        if ($dirName !== '/' && $dirName !== '.') {
-            $prefix = $dirName . '/';
-        }
-        return $prefix . basename($filename);
+        
+        return $filename;
     }
 }
 
